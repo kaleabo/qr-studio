@@ -54,4 +54,108 @@
 
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity;
+}
+
+.modal-content {
+  @apply relative bg-white dark:bg-gray-800 rounded-lg shadow-xl 
+         transform transition-all sm:max-w-lg sm:w-full;
+}
+
+/* Toast Notifications */
+.toast {
+  @apply flex items-center p-4 rounded-lg shadow-lg text-white
+         transform transition-all duration-300 ease-in-out;
+}
+
+.toast-success {
+  @apply bg-green-500;
+}
+
+.toast-error {
+  @apply bg-red-500;
+}
+
+.toast-info {
+  @apply bg-blue-500;
+}
+
+/* Prose Overrides for Dark Mode */
+.dark .prose {
+  @apply prose-invert;
+}
+
+.prose h3 {
+  @apply mt-6 mb-4;
+}
+
+.prose p {
+  @apply mb-4;
+}
+
+/* Loading States */
+.loading {
+  @apply relative pointer-events-none opacity-75;
+}
+
+.loading::after {
+  content: '';
+  @apply absolute inset-0 bg-gray-200 dark:bg-gray-700 
+         bg-opacity-50 dark:bg-opacity-50;
+}
+
+/* QR Scanner Styles */
+#reader {
+  @apply w-full max-w-lg mx-auto border-0 rounded-lg overflow-hidden;
+}
+
+#reader video {
+  @apply w-full h-full object-cover;
+}
+
+/* History Item Hover Effects */
+.history-item {
+  @apply transition-all duration-200 hover:shadow-md 
+         hover:bg-gray-100 dark:hover:bg-gray-600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .tab-content {
+    @apply px-2;
+  }
+  
+  #reader {
+    @apply max-w-full;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 } 

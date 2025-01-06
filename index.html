@@ -83,13 +83,129 @@
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main Content Area -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div id="tabContent" class="space-y-8">
-      <!-- Tab contents will be dynamically loaded here -->
+    <!-- Tabs Container -->
+    <div class="mb-8">
+      <div class="sm:hidden">
+        <select id="mobileTabs" class="input-field">
+          <option value="generate">Generate QR Code</option>
+          <option value="scan">Scan QR Code</option>
+          <option value="history">History</option>
+        </select>
+      </div>
+      
+      <div class="hidden sm:block">
+        <nav class="flex space-x-4" aria-label="Tabs">
+          <button data-tab="generate" class="tab-btn active">
+            <i class="fas fa-qrcode mr-2"></i>Generate
+          </button>
+          <button data-tab="scan" class="tab-btn">
+            <i class="fas fa-camera mr-2"></i>Scan
+          </button>
+          <button data-tab="history" class="tab-btn">
+            <i class="fas fa-history mr-2"></i>History
+          </button>
+        </nav>
+      </div>
     </div>
+
+    <!-- Dynamic Content Area -->
+    <div id="tabContent" class="fade-in">
+      <!-- Content will be dynamically inserted here -->
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
   </main>
 
-  <script src="script.js"></script>
+  <!-- Footer -->
+  <footer class="mt-auto py-6 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          © 2024 QR Studio Pro. All rights reserved.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <button id="helpButton" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+            <i class="fas fa-question-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Help & Instructions
+            </h2>
+            <button id="closeHelpModal" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <div class="prose dark:prose-invert max-w-none">
+            <h3>Generating QR Codes</h3>
+            <p>
+              1. Select the content type you want to encode<br>
+              2. Fill in the required information<br>
+              3. Customize the appearance (optional)<br>
+              4. Click "Generate QR Code"<br>
+              5. Download or share your QR code
+            </p>
+
+            <h3>Scanning QR Codes</h3>
+            <p>
+              1. Switch to the "Scan" tab<br>
+              2. Allow camera access when prompted<br>
+              3. Point your camera at a QR code<br>
+              4. The result will appear automatically
+            </p>
+
+            <h3>History</h3>
+            <p>
+              Your last 10 generated and scanned QR codes are automatically saved
+              in the History tab. Each entry shows:
+              - Whether it was generated or scanned
+              - The content
+              - When it was created
+              - A preview image (for generated QR codes)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Help Modal Controls
+    document.getElementById('helpButton').addEventListener('click', () => {
+      document.getElementById('helpModal').classList.remove('hidden')
+    })
+
+    document.getElementById('closeHelpModal').addEventListener('click', () => {
+      document.getElementById('helpModal').classList.add('hidden')
+    })
+
+    // Close modal when clicking outside
+    document.getElementById('helpModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.classList.add('hidden')
+      }
+    })
+  </script>
 </body>
 </html> 
